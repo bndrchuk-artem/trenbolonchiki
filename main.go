@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -6,14 +5,6 @@ import (
   "net/http"
   "time"
 )
-
-func main() {
-  http.HandleFunc("/time", timeHandler)
-  err := http.ListenAndServe(":8795", nil)
-  if err !=nil {
-    return
-  }
-}
 
 type TimeResponse struct {
   Time string `json:"time"`
@@ -25,4 +16,13 @@ func timeHandler(w http.ResponseWriter, r *http.Request) {
   err := json.NewEncoder(w).Encode(response)
   if err != nil {
     return
+  }
+}
+
+func main() {
+  http.HandleFunc("/time", timeHandler)
+  err := http.ListenAndServe(":8795", nil)
+  if err !=nil {
+    return
+  }
 }
