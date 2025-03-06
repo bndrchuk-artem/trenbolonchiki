@@ -8,9 +8,12 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/time", timeHandler)
-	http.ListenAndServe(":8795", nil)
+  http.HandleFunc("/time", timeHandler)
+  err := http.ListenAndServe(":8795", nil)
+  if err !=nil {
+    return
   }
+}
 
 type TimeResponse struct {
   Time string `json:"time"`
