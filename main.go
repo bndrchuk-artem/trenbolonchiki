@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -5,6 +6,11 @@ import (
   "net/http"
   "time"
 )
+
+func main() {
+	http.HandleFunc("/time", timeHandler)
+	http.ListenAndServe(":8795", nil)
+  }
 
 type TimeResponse struct {
   Time string `json:"time"`
