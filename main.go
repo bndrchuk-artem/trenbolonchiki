@@ -10,7 +10,7 @@ import (
 func main() {
 	http.HandleFunc("/time", timeHandler)
 	http.ListenAndServe(":8795", nil)
-  }
+}
 
 type TimeResponse struct {
   Time string `json:"time"`
@@ -19,5 +19,7 @@ type TimeResponse struct {
 func timeHandler(w http.ResponseWriter, r *http.Request) {
   response := TimeResponse{Time: time.Now().Format(time.RFC3339)}
   w.Header().Set("Content-Type", "application/json")
-  json.NewEncoder(w).Encode(response)
+  err := json.NewEncoder(w).Encode(response)
+  if err != nil {
+    return
 }
